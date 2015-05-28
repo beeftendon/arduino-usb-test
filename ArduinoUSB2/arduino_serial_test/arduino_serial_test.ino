@@ -1,15 +1,21 @@
 int ledPin = 13;
-int state=0;
+char state1[20];
+char state2[20];
+char state3[20];
 void setup() {
     pinMode(ledPin, OUTPUT); // pin will be used to for output
-    Serial.begin(115200); // same as in your c++ script
+    Serial.begin(500000); // same as in your c++ script
 }
 
 void loop() {
   if (Serial.available() > 0)
   {
-    state = Serial.read(); // used to read incoming data
-    Serial.println("1234567 1234567 1234567");
+    state1 = Serial.read(); // used to read incoming data
+    state2 = Serial.read(); // used to read incoming data
+    state3 = Serial.read(); // used to read incoming data
+    Serial.println(state1);
+    Serial.println(state2);
+    Serial.println(state3);
     /*
     switch(state)// see what was sent to the board
     {

@@ -36,11 +36,15 @@ int main(array<System::String ^> ^args)
 {
 	ofstream timefile;
 	timefile.open("timefile.txt");
+	ofstream serialfile;
+	serialfile.open("serialfile.txt");
 
 	String^ answer;
 	String^ portName;
-	String^ response;
-	int baudRate = 115200;
+	String^ response1;
+	String^ response2;
+	String^ response3;
+	int baudRate = 500000;
 	Console::WriteLine("Type in a port name and hit ENTER");
 	portName = Console::ReadLine();
 
@@ -50,10 +54,18 @@ int main(array<System::String ^> ^args)
 	int i = 0;
 	do{
 
-		arduino->WriteLine("1234 1234 1234");
+		arduino->WriteLine("1");
+		arduino->WriteLine("1");
+		arduino->WriteLine("1");
 		StartCounter();
-		arduino->ReadLine();
+		response1 = arduino->ReadLine();
+		response2 = arduino->ReadLine();
+		response3 = arduino->ReadLine();
+		Console::WriteLine(response1);
+		Console::WriteLine(response2);
+		Console::WriteLine(response3);
 		timefile << GetCounter() << "\n";
+		//serialfile << response1 << ", " << response2 << ", " << response3;
 		i++;
 		/*
 		// ask on or off
@@ -84,4 +96,8 @@ int main(array<System::String ^> ^args)
 		*/
 	} while (i<1000); // while (String::Compare(answer, "yes") == 0);
 	timefile.close();
+	Console::ReadLine();
+	Console::Clear();
+
+	return 0;
 }
